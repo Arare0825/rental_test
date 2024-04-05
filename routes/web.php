@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\ManageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hotel',[HotelController::class,'index']);
-Route::post('/hotel',[HotelController::class,'index']);
+Route::get('/hotel',[HotelController::class,'index'])->name('hotel.index');
+Route::post('/hotel/store',[HotelController::class,'store'])->name('hotel.store');
+
+
+Route::get('/manage',[ManageController::class,'index'])->name('manage');

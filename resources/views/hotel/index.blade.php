@@ -108,10 +108,11 @@ body {
 <body>
 <div class="login-page">
   <div class="form">
-    <form class="login-form">
-      <input type="text" placeholder="ユーザー"/>
-      <input type="password" placeholder="パスワード"/>
-      <button>ログイン</button>
+    <form class="login-form" method="post" action="{{ route('hotel.store') }}">
+        @csrf
+      <input name="hid" type="text" placeholder="ユーザー"/>
+      <input name="password" type="password" placeholder="パスワード"/>
+      <button type="submit">ログイン</button>
     </form>
   </div>
 </div>

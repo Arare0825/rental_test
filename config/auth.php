@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'hotels',
     ],
 
     /*
@@ -38,7 +38,16 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'hotels',
+        ],
+        'hotels' => [
+            'driver' => 'session',
+            'provider' => 'hotels',
+        ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'hotels',
+            'hash' => false,
         ],
     ],
 
@@ -64,6 +73,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'hotels' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Hotel::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -93,6 +107,13 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'hotels' => [
+            'provider' => 'hotels',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
     ],
 
     /*

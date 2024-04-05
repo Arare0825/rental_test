@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Hotel;
+use App\Models\Manage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class HotelController extends Controller
+class ManageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class HotelController extends Controller
      */
     public function index()
     {
-        return view('hotel.index');
+        return view('manage.index');
     }
 
     /**
@@ -36,31 +35,16 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-
-        $info = $request->validate([
-            'hid' => ['required'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::attempt([
-            'hid' => $request->hid,
-            'password' => $request->password,
-        ])) {
-            $request->session()->regenerate();
-            return redirect()->route('manage');
-        }
-
-        return redirect()->back();
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Hotel  $hotel
+     * @param  \App\Models\Manage  $manage
      * @return \Illuminate\Http\Response
      */
-    public function show(Hotel $hotel)
+    public function show(Manage $manage)
     {
         //
     }
@@ -68,10 +52,10 @@ class HotelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Hotel  $hotel
+     * @param  \App\Models\Manage  $manage
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hotel $hotel)
+    public function edit(Manage $manage)
     {
         //
     }
@@ -80,10 +64,10 @@ class HotelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hotel  $hotel
+     * @param  \App\Models\Manage  $manage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hotel $hotel)
+    public function update(Request $request, Manage $manage)
     {
         //
     }
@@ -91,10 +75,10 @@ class HotelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Hotel  $hotel
+     * @param  \App\Models\Manage  $manage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hotel $hotel)
+    public function destroy(Manage $manage)
     {
         //
     }
