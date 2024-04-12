@@ -95,9 +95,14 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit($id)
     {
-        //
+        dd($id);
+
+        // $item = DB::table('items')->where('id',$id)->first();
+
+        // return response()->json(['item' => $item]);
+
     }
 
     /**

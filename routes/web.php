@@ -32,4 +32,5 @@ Route::get('/manage',[ManageController::class,'index'])->name('manage');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/item',[ItemController::class,'index'])->name('item');
     Route::post('/item/store',[ItemController::class,'store'])->name('item.store');
+    Route::get('/item/{id}/edit',[ItemController::class,'edit'])->name('item.edit');
       });
