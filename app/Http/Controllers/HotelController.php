@@ -47,7 +47,7 @@ class HotelController extends Controller
             'password' => $request->password,
         ])) {
             $request->session()->regenerate();
-            return redirect()->route('manage');
+            return redirect()->route('item');
         }
 
         return redirect()->back();

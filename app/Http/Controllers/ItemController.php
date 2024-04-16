@@ -24,7 +24,7 @@ class ItemController extends Controller
         // ->where('visible',0)
         ->orderBy('sort','desc')
         ->get();
-        // dd($items);
+        // dd(count($items));
 
         return view('item.index',compact('items'));
     }
@@ -97,11 +97,14 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        dd($id);
+        // dd($id);
 
-        // $item = DB::table('items')->where('id',$id)->first();
+        $item = DB::table('items')->where('id',$id)->first();
 
-        // return response()->json(['item' => $item]);
+        return response()->json([
+            'item' => $item,
+            'id' => $id,
+        ]);
 
     }
 
@@ -112,9 +115,28 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request)
     {
-        //
+        // dd($request);
+
+        $id = $request->id;
+        $item_name = $request->item_name;
+        $image = $request->editImage;
+        $sort = $request->sort;
+        $stock = $request->stock;
+
+        // dd($id);
+
+        DB::table('items')
+        ->where('id',$id)
+        ->update([
+            "item_name" =>$item_name,
+            "stock" =>$stock,
+            "sort" =>$sort,
+        ]);
+
+        return redirect()->route('item');
+
     }
 
     /**
@@ -123,8 +145,12 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy($id)
     {
-        //
+        // dd($id);
+
+        DB::table('items')->where('id',$id)->delete();
+
+        return redirect()->back();
     }
 }
