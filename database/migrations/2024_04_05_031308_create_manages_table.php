@@ -13,8 +13,16 @@ class CreateManagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('manages', function (Blueprint $table) {
+        Schema::create('hotel_info', function (Blueprint $table) {
             $table->id();
+            $table->string('hid');
+            $table->string('open_time')->nullable();
+            $table->string('close_time')->nullable();
+            $table->boolean('allday_active');
+            $table->string('explain_text_ja','255')->nullable();
+            $table->string('explain_text_en','255')->nullable();
+            $table->string('order_text_ja','255')->nullable();
+            $table->string('order_text_en','255')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +34,6 @@ class CreateManagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('manages');
+        Schema::dropIfExists('hotel_info');
     }
 }

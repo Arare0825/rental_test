@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Manage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ManageController extends Controller
 {
@@ -14,7 +16,14 @@ class ManageController extends Controller
      */
     public function index()
     {
-        return view('manage.index');
+
+        $hid = Auth::id();
+        $hotelInfo = null;
+
+        $hotelInfo = DB::table('hotel_info')->where('hid',$hid)->first();
+
+        // dd($hotelInfo->allday_active);
+        return view('manage.index',compact('hotelInfo'));
     }
 
     /**
@@ -35,7 +44,53 @@ class ManageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request);
+
+        if (isset($request->check)){
+            $check = 1;
+        }else{
+            $check = 0;
+        }
+        // dd($check);
+
+        $hid = Auth::id();
+        $info = null;
+        $info = DB::table('hotel_info')->select('hid')->where('hid',$hid)->first();
+
+        // dd($info);
+
+        if(! is_null($info)){
+            DB::table('hotel_info')->update([
+                'hid' => $hid,
+                'open_time' => $request->startTime,
+                'close_time' => $request->endTime,
+                'allday_active' => $check,
+                'explain_text_ja' => $request->explaineJa,
+                'explain_text_en' => $request->explaineEN,
+                'order_text_ja' => $request->orderJa,
+                'order_text_en' => $request->orderEn,
+            ]);
+        } else{
+            DB::table('hotel_info')->insert([
+                'hid' => $hid,
+                'open_time' => $request->startTime,
+                'close_time' => $request->endTime,
+                'allday_active' => $check,
+                'explain_text_ja' => $request->explaineJa,
+                'explain_text_en' => $request->explaineEN,
+                'order_text_ja' => $request->orderJa,
+                'order_text_en' => $request->orderEn,
+            ]);
+    
+    
+        } 
+
+
+        // dd($request);
+
+        return redirect()->back();
+
     }
 
     /**

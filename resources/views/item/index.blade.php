@@ -353,7 +353,7 @@ a{
                 <a href="{{ route('item') }}" class="listbutton">手動貸出</a>
                 </ul>
                 <ul>
-                <a href="#" class="listbutton">ホテル管理</a>
+                <a href="{{ route('manage') }}" class="listbutton">ホテル管理</a>
                 </ul>
             </ol>
         </div>

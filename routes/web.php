@@ -25,9 +25,10 @@ Route::get('/hotel',[HotelController::class,'index'])->name('login');
 Route::post('/hotel/store',[HotelController::class,'store'])->name('hotel.store');
 
 
+Route::group(['middleware' => 'auth'], function () {
 Route::get('/manage',[ManageController::class,'index'])->name('manage');
-
-
+Route::get('/manage/store',[ManageController::class,'store'])->name('manage.store');
+});
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/item',[ItemController::class,'index'])->name('item');
