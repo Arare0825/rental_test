@@ -341,7 +341,7 @@ a{
         <div class="sidebar">
             <ol>
                 <ul>
-                <a href="#" class="listbutton">貸出状況</a>
+                <a href="{{ route('notice') }}" class="listbutton">貸出状況</a>
                 </ul>
                 <ul>
                 <a href="#" class="listbutton">レンタル品状況</a>

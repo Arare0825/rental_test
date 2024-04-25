@@ -45,7 +45,6 @@
 .sidebar {
   width: 200px;
   box-sizing: border-box;
-  border: 8px solid chocolate;
   background:#092C59;
   color:white;
 }
@@ -59,13 +58,11 @@
 .flex-content {
   flex-grow: 1;
   box-sizing: border-box;
-  border: 8px solid green;
 }
 
 .fixed-content {
   height: 128px;
   box-sizing: border-box;
-  border: 8px solid darkmagenta;
 }
 .listbutton{
     margin-bottom:30px;
@@ -255,13 +252,14 @@ a{
 
 <body>
 
+
+
 <div class="app">
-      <div class="header">アイテム管理</div>
       <div class="main">
         <div class="sidebar">
             <ol>
                 <ul>
-                <a href="#" class="listbutton">貸出状況</a>
+                <a href="{{ route('notice') }}" class="listbutton">貸出状況</a>
                 </ul>
                 <ul>
                 <a href="#" class="listbutton">レンタル品状況</a>
@@ -279,37 +277,45 @@ a{
         </div>
         <div class="content">
           <div class="flex-content">
-            <form action="{{ route('manage.store') }}">
-              @csrf
-            <label for="activeTime">営業時間：</label>
-            <input name="startTime" id="startTime" type="time" value="<?php if(isset($hotelInfo->open_time)){echo $hotelInfo->open_time;} ?>">
-            ~
-            <input name="endTime" id="endTime" type="time" value="<?php if(isset($hotelInfo->open_time)){echo $hotelInfo->close_time;} ?>">
-            <input name="check" id="check" type="checkbox" value="1" <?php if(isset($hotelInfo->allday_active) && $hotelInfo->allday_active == 1){ echo "checked";} ?>>
-            <label for="check">終日</label>
-            <br>
-            <label  for="explaineJa">説明テキスト（JP）：</label>
-            <textarea name="explaineJa" id="explaineJa" type="textarea">@if(isset($hotelInfo->explain_text_ja)){{$hotelInfo->explain_text_ja }}@endif</textarea>
-            <br>
-            <label for="explaineEN">説明テキスト（EN）：</label>
-            <textarea name="explaineEN" id="explaineEn" type="textarea">@if(isset($hotelInfo->explain_text_en)){{$hotelInfo->explain_text_en}}@endif</textarea>
-            <br>
-            <label for="orderJa">注文完了時テキスト(JP)：</label>
-            <textarea name="orderJa" id="orderJa" type="textarea">@if(isset($hotelInfo->order_text_ja)){{ $hotelInfo->order_text_ja }}@endif</textarea>
-            <br>
-            <label for="orderEn">注文完了時テキスト(EN)：</label>
-            <textarea name="orderEn" id="orderEn" type="textarea">@if(isset($hotelInfo->order_text_en)){{ $hotelInfo->order_text_en }}@endif</textarea>
-            <br>
-          <button type="submit">保存</button>
-          </form>
+            <!-- <button class="add-button" id="openModal">Open modal</button> -->
+          <table class="design03">
+          <tr>
+            <th>ステータス</th>
+            <th>注文日時</th>
+            <th>客室番号</th>
+            <th>品名</th>
+            <th>数量</th>
+            </tr>
+            @foreach($orders as $order)
+            <input type="hidden" value="" id="" name="id">
+          <tr>
+            @if($order->status == 0)
+            <td><button id="" style="color:red;">未確認</button></td>
+            @elseif($order->status == 1)
+            <td><button id="" style="color:blue;">準備完了</button></td>
+            @elseif($order->status == 2)
+            <td><button id="" style="color:gray;">受け渡し完了</button></td>
+            @elseif($order->status == 3)
+            <td><button id="" style="color:yellow;">返却済み</button></td>
+            @elseif($order->status == 4)
+            <td><button id="" style="color:black;">未返却</button></td>
+            @else
+            <td><button id="" style="color:black;">キャンセル</button></td>
+            @endif
+            <td>2024-04-24-12-00</td>
+            <td>{{ $order->room }}</td>
+            <td >{{ $order->item_name_ja }}</td>
+            <td>1</td>
+            @endforeach
+          </tr>
+          </table>
           </div>
-          <div class="fixed-content">コンテンツ2</div>
         </div>
       </div>
     </div>
 
 
-<style>
-</style>
+
+
 </body>
 </html>
