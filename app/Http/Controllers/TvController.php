@@ -59,6 +59,7 @@ class TvController extends Controller
             'item_name_ja' => $item->item_name,
             'quantity' => $request->quantity,
             'status' => 0,
+            'created_at' => now(),
         ]);
 
         return redirect()->back();

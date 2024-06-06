@@ -9,29 +9,97 @@
 
 </head>
 <style>
-    .btn--orange,
-button.btn--orange {
-  color: #fff;
-  background-color: #eb6100;
-  padding:20px;
-}
-.btn--orange:hover,
-button.btn--orange:hover {
-  color: #fff;
-  background: #f56500;
+/* 移植ここから */
+
+body{
+    background-color: #EEEEEE;
+    height: 1080px;
+    width: 1920px;
+    /* position: relative; */
+    /* transform-origin: 0% 0%; */
 }
 
-button.btn--radius {
-   border-radius: 100vh;
+.home{
+    position:relative;
+    float: right;
+    width: 130px;
+    height: 55px;
+    font-weight: 400;
+    font-size: 36px;
+    margin-right:157px ;
+    background-color: #FFFFFF;
+    cursor: pointer ;
+    top: 30px;
 }
+
+h1{
+    position:relative;
+    color: black;
+    font-size: 55px;
+    font-weight: 100;
+    padding-left: 10px;
+    display: inline;
+    width: 453px;
+    height: 74px;
+    top: 30px;
+    left: 40px;
+}
+
+.contents{
+    background: #FFFFFF;
+    height: 781px;
+    width: 1777px;
+    margin: auto;
+    margin-top: 80px;
+    /* 垂直方向の中央揃え */
+    /* top: 70%; */
+}
+
+.explain{
+    margin: 40px 30px;
+    display: inline-block;
+    font-size: 24px;
+}
+
+.active-time{
+    float: right;
+    display: inline-block;
+    margin: 40px 30px;
+    font-size: 24px;
+}
+.icon{
+    float: left;
+    width: 51px;
+    height: 57px;
+    margin-left: 10px;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1700px;
+
+}
+
+.container button{
+    width: 450px;
+    height: 80px;
+    border-radius:50px ;
+    margin: 15px 50px 50px 50px;
+    background: #FFFFFF;
+}
+
+.bt-name{
+}
+
+.card{
+    height: 800px;
+    width: 800px;
+    background-color: black;
+}
+
+/* 移植ここまで */
 
 /* モーダル */
-* {
-  box-sizing: border-box;
-}
-body {
-  font-family:'Avenir','Helvetica, Neue','Helvetica','Arial';
-}
 
 .cp_iptxt {
 	/* position: relative; */
@@ -92,12 +160,6 @@ body {
   background-color: #fff;
 }
 
-/* .closeModal {
-  position: absolute;
-  top: 0.5rem;
-  right: 1.5rem;
-  cursor: pointer;
-} */
 
 </style>
 <body>
@@ -109,7 +171,7 @@ body {
     <div class="modalContents">
       <form action="{{ route('tv.store')  }}" method="post">
         @csrf
-    <h3>オーダー確認</h3>
+    <h3>オーダー確認aaa</h3>
 
     <div class="cp_iptxt">
 
@@ -134,10 +196,22 @@ body {
 <!-- モーダルエリアここまで -->
 
 
+<!-- 移植ここから -->
 
-@foreach($items as $item)
-<button id="{{ $item->id }}" class="add-button btn btn--orange btn--radius">{{ $item->item_name }}</button>
-@endforeach
+<div class="title">
+        <h1>貸出備品一覧</h1>
+        <button class="home">HOME</button>
+        <div class="contents">
+        <p class="explain">お部屋までお持ち致します。数に限りがございますので予めご了承ください。</p>
+        <p class="active-time">受付時間：15:00~22:00</p>
+        <div class="container">
+        @foreach($items as $item)
+            <button id="{{ $item->id }}" class="add-button"><img class="icon " src="icon1.svg"><p class="bt-name">{{ $item->item_name }}</p></button>
+            @endforeach
+
+        </div>
+        </div>
+    </div>
 
 <script>
   $(function () {

@@ -252,7 +252,9 @@ a{
 
 <body>
 
+<script>
 
+</script>
 
 <div class="app">
       <div class="main">
@@ -287,22 +289,30 @@ a{
             <th>数量</th>
             </tr>
             @foreach($orders as $order)
-            <input type="hidden" value="" id="" name="id">
+            <?php $date = date('Y/m/d H:i',strtotime($order->created_at) ) ?>
+            <!-- <input type="hidden" value="" id="id" name="id"> -->
           <tr>
-            @if($order->status == 0)
-            <td><button id="" style="color:red;">未確認</button></td>
-            @elseif($order->status == 1)
-            <td><button id="" style="color:blue;">準備完了</button></td>
-            @elseif($order->status == 2)
-            <td><button id="" style="color:gray;">受け渡し完了</button></td>
-            @elseif($order->status == 3)
-            <td><button id="" style="color:yellow;">返却済み</button></td>
-            @elseif($order->status == 4)
-            <td><button id="" style="color:black;">未返却</button></td>
+            <td><select id="{{ $order->id }}" name="{{ $order->id }}" >
+              @for($i=0; $i <= 5; $i++)
+              <option value="{{$i}}" @if($i == $order->status) selected @endif>
+            @if($i == 0)
+            未確認
+            @elseif($i == 1)
+            準備完了
+            @elseif($i == 2)
+            受け渡し完了
+            @elseif($i == 3)
+            返却済み
+            @elseif($i == 4)
+           未返却
             @else
-            <td><button id="" style="color:black;">キャンセル</button></td>
+            キャンセル
             @endif
-            <td>2024-04-24-12-00</td>
+            </option>
+              @endfor
+            </select>
+            </td>
+            <td>{{ $date }}</td>
             <td>{{ $order->room }}</td>
             <td >{{ $order->item_name_ja }}</td>
             <td>1</td>
@@ -313,6 +323,27 @@ a{
         </div>
       </div>
     </div>
+<script>
+    //編集画面非同期処理
+$.ajaxSetup({
+            headers: { 'X-CSRF-TOKEN': $("[name='csrf-token']").attr("content") },
+        })
+        $('select').change(function(){
+            var id = $(this).attr('id');
+            var status = $('select').val();
+             path = `notice/${id}/store/${status}`;
+            $.ajax({
+                url: path,
+                method: "post",
+                data: { id : id, status : status },
+                dataType: "json",
+            }).done(function(res){
+                    console.log("success");
+            }).faile(function(){
+                alert('通信の失敗をしました');
+            });
+        });
+</script>
 
 
 

@@ -24,9 +24,6 @@ class NoticeController extends Controller
         $orders = DB::table('orders')->where('hid',$hid)->orderBy('status','asc')->get();
 
 
-
-
-
         return view('notice.index',compact('orders'));
     }
 
@@ -46,9 +43,17 @@ class NoticeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id,$status)
     {
-        //
+        $order = DB::table('orders')
+        ->where('id',$id)
+        ->update([
+            "status" => $status
+        ]);
+
+        return responce()->json([
+            'status' => $status
+        ]);
     }
 
     /**

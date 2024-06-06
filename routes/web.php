@@ -41,10 +41,15 @@ Route::get('/', function () {
         Route::post('/item/{id}/destroy',[ItemController::class,'destroy'])->name('item.destroy');
         });
 
-        Route::get('/notice',[NoticeController::class,'index'])->name('notice');
 
 
 
       Route::get('/tv/{hid}',[TvController::class,'index'])->name('tv');
       Route::post('/tv/{id}',[TvController::class,'show'])->name('tv.show');
       Route::post('/tv',[TvController::class,'store'])->name('tv.store');
+
+
+      Route::get('/notice',[NoticeController::class,'index'])->name('notice');
+      // Route::get('/notice/{id}/store',[NoticeController::class,'store'])->name('store');
+      Route::post('/notice/{id}/store/{status}',[NoticeController::class,'store'])->name('store');
+
