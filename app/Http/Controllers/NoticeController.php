@@ -48,11 +48,11 @@ class NoticeController extends Controller
         $order = DB::table('orders')
         ->where('id',$id)
         ->update([
-            "status" => $status
+            "status" => $status,
         ]);
 
-        return responce()->json([
-            'status' => $status
+        return response()->json([
+            'status' => $status,
         ]);
     }
 

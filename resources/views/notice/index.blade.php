@@ -257,6 +257,7 @@ a{
 </script>
 
 <div class="app">
+<div class="header">アイテム管理</div>
       <div class="main">
         <div class="sidebar">
             <ol>
@@ -292,11 +293,12 @@ a{
             <?php $date = date('Y/m/d H:i',strtotime($order->created_at) ) ?>
             <!-- <input type="hidden" value="" id="id" name="id"> -->
           <tr>
-            <td><select id="{{ $order->id }}" name="{{ $order->id }}" >
+            <td>
+              <select id="{{ $order->id }}" name="{{ $order->id }}" >
               @for($i=0; $i <= 5; $i++)
               <option value="{{$i}}" @if($i == $order->status) selected @endif>
             @if($i == 0)
-            未確認
+            <p style="color:red;">未確認</p>
             @elseif($i == 1)
             準備完了
             @elseif($i == 2)
@@ -308,8 +310,8 @@ a{
             @else
             キャンセル
             @endif
+            @endfor
             </option>
-              @endfor
             </select>
             </td>
             <td>{{ $date }}</td>
@@ -324,13 +326,14 @@ a{
       </div>
     </div>
 <script>
-    //編集画面非同期処理
+    //通知画面
 $.ajaxSetup({
             headers: { 'X-CSRF-TOKEN': $("[name='csrf-token']").attr("content") },
         })
         $('select').change(function(){
-            var id = $(this).attr('id');
-            var status = $('select').val();
+          var option = $(this).val();
+            var id = $(this).attr('name');
+            var status = $(this).val();
              path = `notice/${id}/store/${status}`;
             $.ajax({
                 url: path,
@@ -339,6 +342,8 @@ $.ajaxSetup({
                 dataType: "json",
             }).done(function(res){
                     console.log("success");
+                    console.log(status);
+                    location.reload();
             }).faile(function(){
                 alert('通信の失敗をしました');
             });
