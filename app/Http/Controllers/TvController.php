@@ -25,8 +25,13 @@ class TvController extends Controller
         ->orderBy('sort','desc')
         ->get();
 
+        //ユーザー名からIDの取得
+        $user = DB::table('hotels')->select('id')->where('hid',$hid)->first();
+        $hotelInfo = DB::table('hotel_info')->where('hid',$user->id)->first();
+
+
         // dd($items);
-        return view('tv.index',compact('items'));
+        return view('tv.index',compact('items','hotelInfo'));
     }
 
     /**
@@ -49,13 +54,19 @@ class TvController extends Controller
     {
 
         $id = $request->id;
-
+        // dd($request->room);
         $item = DB::table('items')->where('id',$id)->first();
+
+        if($request->room){
+            $room = $request->room;
+        }else{
+            $room = 999;
+        }
 
         // dd($item);
         DB::table('orders')->insert([
             'hid' => $item->hid,
-            'room' => 201,
+            'room' => $room,
             'item_name_ja' => $item->item_name,
             'quantity' => $request->quantity,
             'status' => 0,

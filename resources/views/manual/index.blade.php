@@ -183,6 +183,9 @@ h1{
   <label for="stock">個数</label><br>
   <input name="quantity" id="stock" class="item-add showQuantity" value="1" type="number"><br>
 
+  <label for="room">部屋番号</label><br>
+  <input name="room" id="room" class="item-add showQuantity" type="text"><br>
+
   <button id="close" class="close">戻る</button>
 
 <input  type="submit" value="注文確定">
@@ -199,8 +202,8 @@ h1{
 <!-- 移植ここから -->
 
 <div class="title">
-        <h1>貸出備品一覧</h1>
-        <button class="home">HOME</button>
+        <h1>手動貸出</h1>
+        <a href="notice" class="home">戻る</a>
         <div class="contents">
         <p class="explain">お部屋までお持ち致します。数に限りがございますので予めご了承ください。</p>
         @if(isset($hotelInfo->open_time) && isset($hotelInfo->close_time))

@@ -6,6 +6,7 @@ use App\Http\Controllers\ManageController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\TvController;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\ManualController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -52,4 +53,8 @@ Route::get('/', function () {
       Route::get('/notice',[NoticeController::class,'index'])->name('notice');
       // Route::get('/notice/{id}/store',[NoticeController::class,'store'])->name('store');
       Route::post('/notice/{id}/store/{status}',[NoticeController::class,'store'])->name('store');
+
+      Route::get('/manual',[ManualController::class,'index'])->name('manual');
+
+
 

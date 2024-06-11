@@ -257,7 +257,7 @@ a{
 </script>
 
 <div class="app">
-<div class="header">アイテム管理</div>
+<div class="header">貸出状況</div>
       <div class="main">
         <div class="sidebar">
             <ol>
@@ -291,33 +291,22 @@ a{
             </tr>
             @foreach($orders as $order)
             <?php $date = date('Y/m/d H:i',strtotime($order->created_at) ) ?>
-            <!-- <input type="hidden" value="" id="id" name="id"> -->
           <tr>
             <td>
               <select id="{{ $order->id }}" name="{{ $order->id }}" >
-              @for($i=0; $i <= 5; $i++)
-              <option value="{{$i}}" @if($i == $order->status) selected @endif>
-            @if($i == 0)
-            <p style="color:red;">未確認</p>
-            @elseif($i == 1)
-            準備完了
-            @elseif($i == 2)
-            受け渡し完了
-            @elseif($i == 3)
-            返却済み
-            @elseif($i == 4)
-           未返却
-            @else
-            キャンセル
-            @endif
-            @endfor
+              <option value="0" @if(0 == $order->status) selected @endif>未確認</option>
+              <option value="1" @if(1 == $order->status) selected @endif>準備完了</option>
+              <option value="2" @if(2 == $order->status) selected @endif>受け渡し完了</option>
+              <option value="3" @if(3 == $order->status) selected @endif>返却済み</option>
+              <option value="4" @if(4 == $order->status) selected @endif>未返却</option>
+              <option value="5" @if(5 == $order->status) selected @endif>キャンセル</option>
             </option>
             </select>
             </td>
             <td>{{ $date }}</td>
             <td>{{ $order->room }}</td>
             <td >{{ $order->item_name_ja }}</td>
-            <td>1</td>
+            <td>{{ $order->quantity }}</td>
             @endforeach
           </tr>
           </table>
