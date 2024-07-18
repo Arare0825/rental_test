@@ -1,0 +1,439 @@
+/* html {   width: 1920px; height: 1080px; margin:0;} */
+
+body,
+div,
+table,
+p,
+a,
+button {
+  box-sizing: border-box;
+  font-family: "Noto Serif JP";
+}
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Noto Serif JP";
+  width: 1920px;
+  height: 1080px;
+  color: rgb(13, 13, 13);
+  margin: 0;
+}
+#wrapper {
+  /* background: linear-gradient(360deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 30%, #50a3d430 80%, #50a3d45e 90%, #50a3d4bd), 
+    url(back.jpg) no-repeat; */
+  background: linear-gradient(360deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 30%, rgba(80,163,212,0.0016), rgba(80,163,212,0.55), rgba(80,163,212,0.55)), url(back.jpg) no-repeat;
+  /* background: url(/tv/crs07/data/welcome/welcome_1.JPG) no-repeat; */
+  background-size: cover;
+  background-position: top center;
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+
+  /* position: absolute;
+  top: 0; left: 0; */
+  /* padding: 70px; */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 180px;
+  /* padding-top: 20px; */
+}
+.logo {
+  /* margin: 30px; */
+  width: 360px;
+  background: url(hotel_logo.png) no-repeat;
+  background-size: contain;
+  margin-left: 35px;
+  height: 140px;
+  margin-top: 20px;
+}
+.title {
+  display: none;
+
+  flex-grow: 1;
+  width: 1920px;
+
+  line-height: 180px;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 20px;
+}
+a#back {
+  height: 150px;
+  line-height: 100px;
+  font-size: 26px;
+  text-decoration: none;
+  color: #fff;
+
+  letter-spacing: 3px;
+  width: 170px;
+  margin-right: 60px;
+  text-align: center;
+  padding-top: 20px;
+}
+a#back:focus,
+a#back:hover {
+  background: linear-gradient(1deg, rgba(0, 0, 0, 0), rgba(55, 132, 178, 0.412) 30%, rgba(55, 132, 178, 0.631) 85%, rgba(55, 132, 178, 0.812)) !important;
+  outline: none;
+}
+
+/*白枠*/
+div#content {
+  /* position: fixed;
+  left: 55px;
+  top: 188px;
+  margin-top: 30px; */
+  width: 1800px;
+  height: 620px;
+  background: linear-gradient(90deg, rgba(230, 252, 255, 0.902), rgba(255, 255, 255, 0.902) 90%);
+  font-size: 21px;
+  padding: 50px 100px;
+  margin: 40px 60px;
+  border-radius: 15px;
+}
+
+span.title2{
+  background: linear-gradient(transparent 65%, rgba(62, 196, 175, 0.365) 65%);
+  padding-inline: 15px;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
+div#top {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  line-height: 50px;
+}
+
+.text {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0;
+}
+.time {
+  width: 300px;
+  margin-bottom: 0;
+  text-align-last: right;
+}
+
+/*　選択用ボタン　*/
+#button-container {
+  /* padding: 0;
+  margin: 0; */
+  display: inline-block;
+  width: 1600px;
+  height: 434.5px;
+  padding: 50px 0;
+  text-align: center;
+  font-size: 0;
+}
+.button-item {
+  background-color: rgba(255, 255, 255, 0.91);
+  border-radius: 10px; /* ボタンの角を丸くする */
+
+  width: 381px;
+  /* width: 355px; */
+  height: 75px;
+  line-height: 30px;
+  padding: 10px 20px; /* ボタンのパディング */
+
+  margin-right: 20px; /* ボタン間のスペースを調整 */
+  margin-bottom: 12px;
+
+  cursor: pointer;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-align: center;
+  border: none;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.button-item:nth-child(4n) {
+  margin-right: 0;
+}
+.button-item:nth-last-child(4),
+.button-item:nth-last-child(3),
+.button-item:nth-last-child(2),
+.button-item:nth-last-child(1) {
+  margin-bottom: 0;
+}
+
+/* ---------- ここを変更！ ----------  */
+.button-item:nth-last-child(1) {
+  background-color: transparent !important;
+  font-size: 0 !important;
+  pointer-events: none;
+}
+
+.button-item:hover,
+.button-item:focus,
+.button-item:active,
+.button-item.selected {
+  background-color: rgba(37, 156, 138, 0.467); /* マウスがボタンに重なったときの背景色 */
+  color: #fff;
+  outline: none;
+  font-weight: 600;
+}
+
+
+footer {
+  height: 200px;
+  width: 100%;
+}
+#rental-menu {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0),
+    rgba(80, 163, 212, 0.361) 30%,
+    rgba(80, 163, 212, 0.671) 85%,
+    rgba(80, 163, 212, 0.812)
+  );
+  color: #fff;
+  width: 100%;
+  font-size: 21px;
+  font-weight: normal;
+  z-index: 32;
+}
+.menu-item {
+  width: 332px;
+  height: 199.3px;
+  color: #fff;
+  text-align: center;
+  line-height: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  outline: none;
+  /* padding: 80px 0 0 0; */
+}
+.menu-item:focus,
+.menu-item:hover {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(55, 132, 178, 0.361) 30%, rgba(55, 132, 178, 0.671) 85%, rgba(55, 132, 178, 0.812));
+}
+
+/* ---------- ここを変更！ ----------  */
+.menu-item.menu1 {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(55, 132, 178, 0.361) 30%, rgba(55, 132, 178, 0.671) 85%, rgba(55, 132, 178, 0.812));
+  border-bottom: rgba(255, 255, 255, 0.902) solid 4px;
+}
+
+
+/* ----------  MODAL  ----------  */
+
+
+
+/* gpt-------------------------- */
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 33; 
+  left: 0;
+  top: 0;
+  width: 1920px; 
+  height: 1080px; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  color: rgb(13, 13, 13);
+  margin: auto;
+  padding: 0;
+  width: 50%;
+  height: 520px;
+  font-size: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 15px;
+}
+
+.modal-header {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: none;
+  height: 120px;
+}
+
+.modal-header h4 {
+  font-size: 21px;
+  margin: 0;
+  font-weight: 500;
+
+  border-bottom: rgba(173, 173, 173, 0.388) 1px solid;
+  height: 40px;
+  margin-left: 50px;
+  font-weight: 500;
+  padding-bottom: 20px;
+  margin-top: 50px;
+}
+
+.btn-close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 5px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.modal-body {
+  padding: 35px 65px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 21px;
+  height: 300px;
+}
+
+#selectedItem {
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qnt-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100px;
+  align-items: center;
+  margin-inline: 32px;
+}
+
+#qnt {
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: 1px solid rgb(214, 214, 214);
+  width: 90px;
+  height: 40px;
+  text-align: center;
+  font-size: 22px;
+  outline: none;
+  user-select: none;
+  margin: 15px 0;
+}
+
+.arr-up, .arr-down {
+  background: none;
+  height: 50px;
+  width: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.arr-up::before, .arr-down::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.arr-up::before {
+  background-image: url('arr_up.png');
+}
+
+.arr-down::before {
+  background-image: url('arr_down.png');
+}
+
+.arr-up:focus,
+.arr-up:hover,
+.arr-down:focus,
+.arr-down:hover,
+.btn-close:focus,
+.btn-close:hover {
+  background-color: rgba(214, 214, 214, 0.353);
+  border-radius: 5px;
+  outline: none;
+}
+
+.btn-close:focus,
+.btn-close:hover,
+.btn-close.selected {
+  box-shadow: none;
+}
+
+
+.modal-footer {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  height: 100px;
+  /* margin-bottom: 15px; */
+}
+
+.btn {
+  font-size: 20px;
+  letter-spacing: 5px;
+  height: 60px;
+  color: rgb(13, 13, 13);
+  font-weight: 500;
+  padding-inline: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.btn-danger1 {
+  background-color: rgba(179, 179, 179, 0.259);
+  width: 187px;
+  letter-spacing: 3.5px;
+  margin-right: 15px;
+}
+
+.btn-danger2, .btn-danger3 {
+  background-color: rgba(37, 156, 138, 0.467);
+  width: 110px;
+}
+
+.btn.btn-danger1:focus,
+.btn.btn-danger1.selected {
+  background-color: rgba(179, 179, 179, 0.671);
+  color: #fff;
+  outline: none;
+}
+.btn.btn-danger2:focus,
+.btn.btn-danger2.selected {
+  background-color: rgba(42, 129, 116, 0.878);
+  color: #fff;
+  outline: none;
+}
+
+.btn.btn-danger3 {
+  background-color: rgba(37, 156, 138, 0.467);
+  padding-inline: 20px;
+  padding-left: 20px;
+  border: none;
+  width: 110px;
+}
+.btn.btn-danger3:focus,
+.btn.btn-danger3.selected {
+  background-color: rgba(42, 129, 116, 0.878);
+  color: #fff;
+  outline: none;
+} 
+
+

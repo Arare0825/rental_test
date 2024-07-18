@@ -56,6 +56,7 @@ class TvController extends Controller
         $id = $request->id;
         // dd($request->room);
         $item = DB::table('items')->where('id',$id)->first();
+        $quantity = $request->quantity;
 
         if($request->room){
             $room = $request->room;
@@ -63,12 +64,22 @@ class TvController extends Controller
             $room = 999;
         }
 
+        //在庫処理 注文時点で在庫から差し引き
+        $selectStock = DB::table('items')->select('stock')->where('id',$id)->first();
+        $stock = $selectStock->stock - $quantity ;
+
+        DB::table('items')->where('id',$id)->update([
+            'stock' => $stock
+        ]);
+
+        // dd($stock);
+
         // dd($item);
         DB::table('orders')->insert([
             'hid' => $item->hid,
             'room' => $room,
             'item_name_ja' => $item->item_name,
-            'quantity' => $request->quantity,
+            'quantity' => $quantity,
             'status' => 0,
             'created_at' => now(),
         ]);
